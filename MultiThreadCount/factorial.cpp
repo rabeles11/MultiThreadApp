@@ -13,6 +13,8 @@
 #endif
 #include <iostream>
 #include <cstdlib>
+#include "QTimeLine"
+#include "QTimer"
 
 Factorial::Factorial(int numberOfElements)
 {
@@ -22,13 +24,12 @@ Factorial::Factorial(int numberOfElements)
 QString longDoubleToString(long double value)
     {
     std::stringstream stream;
-    stream << std::fixed << std::setprecision(std::numeric_limits<long double>::digits10 + 1) << value;
+    stream << std::fixed << std::setprecision(2) << value;
     return QString::fromStdString(stream.str());
     }
 
 void Factorial::run()
 {
-    long double factorial = 1.0;
     MainWindow * mw = MainWindow::getMainWinPtr();
 
 
@@ -37,11 +38,15 @@ void Factorial::run()
         msgBox.exec();
     }
     else {
-        for(int i = 1; i <= n; ++i) {
+        mw->ui->label_result_fact->setText("Counting");
+        mw->ui->progressBarFactorial->setMinimum(1);
+        mw->ui->progressBarFactorial->setMaximum(n);
+        for(int i = x; i <= n; ++i) {
             factorial *= i;
             sleep(1);
+            x = i;
+            mw->ui->progressBarFactorial->setValue(i);
         }
             mw->ui->label_result_fact->setText(longDoubleToString(factorial));
-            // Tadz napojit timer
         }
 }
