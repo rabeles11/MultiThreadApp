@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     ui->progressBarFactorial->setValue(0);
+    ui->progressBarEratosthene->setValue(0);
     pMainWindow = this;
 
 }

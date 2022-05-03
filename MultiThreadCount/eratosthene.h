@@ -15,8 +15,11 @@ public:
     int n;
     QMessageBox msgBox;
     //long double factorial = 1.0;
-    int x = 1;
+    int x = 3;
+    int xx = 3;
     bitset<500001> Primes;
+    QList<int> listofresults;
+    QString string;
 private slots:
     void run() override;
 };
