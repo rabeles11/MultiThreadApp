@@ -40,12 +40,14 @@ void Factorial::run()
     else {
         mw->ui->label_result_fact->setText("Counting");
         mw->ui->progressBarFactorial->setMinimum(1);
-        mw->ui->progressBarFactorial->setMaximum(n);
+        mw->ui->progressBarFactorial->setMaximum(n);;
         for(int i = x; i <= n; ++i) {
+            timer.start();
             factorial *= i;
             sleep(1);
             x = i;
             mw->ui->progressBarFactorial->setValue(i);
+            mw->ui->label_estimated_time_fact->setText(QString::number(timer.elapsed() * (n-i))+"ms");
         }
             mw->ui->label_result_fact->setText(longDoubleToString(factorial));
         }

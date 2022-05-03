@@ -5,6 +5,7 @@
 #include <QMutexLocker>
 #include <cmath>
 #include <QMessageBox>
+#include <QElapsedTimer>
 
 
 class Factorial : public QThread
@@ -15,6 +16,8 @@ public:
     QMessageBox msgBox;
     long double factorial = 1.0;
     int x = 1;
+    QElapsedTimer timer;
+
 private slots:
     void run() override;
 };

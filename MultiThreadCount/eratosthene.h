@@ -7,6 +7,8 @@
 #include <bitset>
 #include <iostream>
 #include <QMessageBox>
+#include <QElapsedTimer>
+
 using namespace std;
 class Eratosthene : public QThread
 {
@@ -20,6 +22,8 @@ public:
     bitset<500001> Primes;
     QList<int> listofresults;
     QString string;
+    QElapsedTimer timer;
+
 private slots:
     void run() override;
 };
