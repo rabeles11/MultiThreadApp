@@ -32,6 +32,10 @@ if(ANDROID)
     mainwindow.cpp
     mainwindow.h
     mainwindow.ui
+    factorial.cpp
+    factorial.h
+    eratosthene.cpp
+    eratosthene.h
   )
 else()
   add_executable(MultiThreadCount
@@ -39,6 +43,10 @@ else()
     mainwindow.cpp
     mainwindow.h
     mainwindow.ui
+    factorial.cpp
+    factorial.h
+    eratosthene.cpp
+    eratosthene.h
   )
 endif()
 
