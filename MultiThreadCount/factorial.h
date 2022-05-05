@@ -6,10 +6,12 @@
 #include <cmath>
 #include <QMessageBox>
 #include <QElapsedTimer>
+#include <QString>
 
 
 class Factorial : public QThread
 {
+    Q_OBJECT
 public:
     Factorial(int numberOfElements);
     int n;
@@ -20,6 +22,12 @@ public:
 
 private slots:
     void run() override;
+signals:
+    void RefreshProgressBar(int i);
+    void ChangelabelResultName(QString string);
+    void ChangelabelEstimatedTimeFact(QString string);
+    void SetProgresBarFactorialMinimum(int i);
+    void SetProgresBarFactorialMaximum(int i);
 };
 
 #endif // FACTORIAL_H

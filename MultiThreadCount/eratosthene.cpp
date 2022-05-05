@@ -16,11 +16,10 @@ Eratosthene::Eratosthene(int numberOfElements)
 
 void Eratosthene::run()
 {
-    MainWindow * mw = MainWindow::getMainWinPtr();
     Primes[0] = 1;
-    mw->ui->label_result_eratosthene->setText("Counting");
-    mw->ui->progressBarEratosthene->setMinimum(1);
-    mw->ui->progressBarEratosthene->setMaximum(n);
+    emit ChangelabelResultName("Counting");
+    emit SetProgresBarEratostheneMinimum(1);
+    emit SetProgresBarEratostheneMaximum(n);
         for (int i = x; i*i <= n; i += 2) {
             x = i;
             if (Primes[i / 2] == 0) {
@@ -29,7 +28,7 @@ void Eratosthene::run()
             }
         }
         for (int i = xx; i <= n; i++) {
-            mw->ui->progressBarEratosthene->setValue(i);
+            emit RefreshProgressBarEratosthene(i);
             timer.start();
             xx = i;
             sleep(1);
@@ -39,7 +38,7 @@ void Eratosthene::run()
                else if (i % 2 == 1 && Primes[i / 2] == 0){
                    listofresults.append(i);
                }
-           mw->ui->label_estimated_time_eratosthene->setText(QString::number(timer.elapsed() * (n-i))+"ms");
+           emit ChangelabelEstimatedTimeEratosthene(QString::number(timer.elapsed() * (n-i))+"ms");
            }
 
   for(int i=0; i<listofresults.size(); i++)
@@ -48,7 +47,5 @@ void Eratosthene::run()
       if(i<listofresults.size()-1)
       string += "," ;
   }
-  mw->ui->label_result_eratosthene->setText(string);
-  //mw->ui->textBrowser->setText(string);
-
+  emit ChangelabelResultName(string);
 }

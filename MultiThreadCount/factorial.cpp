@@ -15,6 +15,7 @@
 #include <cstdlib>
 #include "QTimeLine"
 #include "QTimer"
+#include "mainwindow.h"
 
 Factorial::Factorial(int numberOfElements)
 {
@@ -30,25 +31,23 @@ QString longDoubleToString(long double value)
 
 void Factorial::run()
 {
-    MainWindow * mw = MainWindow::getMainWinPtr();
-
 
     if (n < 0){
         msgBox.setText("The N < 0");
         msgBox.exec();
     }
     else {
-        mw->ui->label_result_fact->setText("Counting");
-        mw->ui->progressBarFactorial->setMinimum(1);
-        mw->ui->progressBarFactorial->setMaximum(n);;
+        emit ChangelabelResultName("Counting");
+        emit SetProgresBarFactorialMinimum(1);
+        emit SetProgresBarFactorialMaximum(n);
         for(int i = x; i <= n; ++i) {
             timer.start();
             factorial *= i;
             sleep(1);
             x = i;
-            mw->ui->progressBarFactorial->setValue(i);
-            mw->ui->label_estimated_time_fact->setText(QString::number(timer.elapsed() * (n-i))+"ms");
+            emit RefreshProgressBar(i);
+            emit ChangelabelEstimatedTimeFact(QString::number(timer.elapsed() * (n-i))+"ms");
         }
-            mw->ui->label_result_fact->setText(longDoubleToString(factorial));
+            emit ChangelabelResultName(longDoubleToString(factorial));
         }
 }

@@ -17,9 +17,7 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-    static MainWindow * getMainWinPtr();
     Ui::MainWindow *ui;
-    static MainWindow * pMainWindow;
     QTimer *timer;
     Factorial *fact;
     Eratosthene *eratosthene;
@@ -30,5 +28,16 @@ private slots:
     void on_pushButtonStartEratosthene_clicked();
     void on_pushButtonStopEratosthene_clicked();
     void on_pushButtonResetEratosthene_clicked();
+public slots:
+    void RefreshBarFact(int i);
+    void ChangeLabelResultName(QString string);
+    void SetProgresBarFactorialMaximum(int i);
+    void SetProgresBarFactorialMinimum(int i);
+    void ChangelabelEstimatedTimeFact(QString string);
+    void RefreshBarEratosthene(int i);
+    void ChangeLabelResultNameEratosthene(QString string);
+    void SetProgresBarEratostheneMaximum(int i);
+    void SetProgresBarEratostheneMinimum(int i);
+    void ChangelabelEstimatedTimeEratosthene(QString string);
 };
 #endif // MAINWINDOW_H
